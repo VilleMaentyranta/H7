@@ -182,5 +182,23 @@ git add . && git commit; git pull && git push
 
 Kurkataan Githubista, että tiedosto on varmasti päivittynyt sinne ja sehän on.
 
+#### Orjakone
 
+Seuraavaksi loin uuden koneen virtualboxiin samalla tavalla kuin aiemmin.  
+Kun kone oli valmis, yhdistin sen samaan verkkoon Master koneen kanssa.
 
+-   Orjakoneella
+    -   `sudo apt-get update`
+    -   `sudo apt-get install salt-minion`
+        -   `master: 10.0.2.15`
+        -   `id: uusiorja`
+-   Käynnistetään minion uudelleen
+    -   `sudo systemctl restart salt-minion.service`
+
+-   Masterilla etsitään löytyykö uusia orjia ja hyväksytään se
+    -   sudo salt-key -A
+    -   Y
+    
+Nyt kun meillä on uusiorja hallinnassa, voimme kokeilla asentaa sille suoraan kaikki aiemmin asennetut sovellukset `sudo salt '*' state.highstate` -komennolla.
+
+Kaikki näyttää menneen läpi, joten kokeillaan nyt vielä orjalla että kaikki toimii ja nehän toimii.
